@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; max-width: 600px; margin: 0 auto; }
+        input { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+    </style>
+</head>
+<body>
+    <h1>Backend API Test</h1>
+
+    <h2>1. Health Check</h2>
+    <button onclick="testHealth()">Test Health Endpoint</button>
+    <div id="healthResult"></div>
+
+    <h2>2. OpenAI API Key Test</h2>
+    <input type="text" id="openaiKey" placeholder="Enter OpenAI API key (sk-...)">
+    <button onclick="testOpenAI()">Test OpenAI Key</button>
+    <div id="openaiResult"></div>
+
+    <h2>3. Simli API Key Test</h2>
+    <input type="text" id="simliKey" placeholder="Enter Simli API key">
+    <button onclick="testSimli()">Test Simli Key</button>
+    <div id="simliResult"></div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000';
+
+        async function testHealth() {
+            const resultDiv = document.getElementById('healthResult');
+            resultDiv.innerHTML = '<div class="info">Testing...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    resultDiv.innerHTML = `<div class="success">✓ Success: ${JSON.stringify(data)}</div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="error">✗ Failed: ${JSON.stringify(data)}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">✗ Error: ${error.message}<br>Make sure backend server is running!</div>`;
+            }
+        }
+
+        async function testOpenAI() {
+            const apiKey = document.getElementById('openaiKey').value;
+            const resultDiv = document.getElementById('openaiResult');
+
+            if (!apiKey) {
+                resultDiv.innerHTML = '<div class="error">Please enter an API key</div>';
+                return;
+            }
+
+            resultDiv.innerHTML = '<div class="info">Testing OpenAI API key...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/test/openai`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ apiKey })
+                });
+
+                const data = await response.json();
+                console.log('OpenAI response:', data);
+
+                if (response.ok && data.success) {
+                    resultDiv.innerHTML = `<div class="success">✓ Success: ${data.details}</div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="error">✗ Failed: ${data.error || data.details}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">✗ Error: ${error.message}<br>Make sure backend server is running!</div>`;
+            }
+        }
+
+        async function testSimli() {
+            const apiKey = document.getElementById('simliKey').value;
+            const resultDiv = document.getElementById('simliResult');
+
+            if (!apiKey) {
+                resultDiv.innerHTML = '<div class="error">Please enter an API key</div>';
+                return;
+            }
+
+            resultDiv.innerHTML = '<div class="info">Testing Simli API key...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/test/simli`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ apiKey })
+                });
+
+                const data = await response.json();
+                console.log('Simli response:', data);
+
+                if (response.ok && data.success) {
+                    resultDiv.innerHTML = `<div class="success">✓ Success: ${data.details}</div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="error">✗ Failed: ${data.error || data.details}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">✗ Error: ${error.message}<br>Make sure backend server is running!</div>`;
+            }
+        }
+    </script>
+</body>
+</html>

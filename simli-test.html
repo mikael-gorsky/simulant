@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simli Russian Audio Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .status {
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .status.info {
+            background: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #90caf9;
+        }
+
+        .status.success {
+            background: #e8f5e9;
+            color: #388e3c;
+            border: 1px solid #81c784;
+        }
+
+        .status.error {
+            background: #ffebee;
+            color: #d32f2f;
+            border: 1px solid #ef5350;
+        }
+
+        .status.hidden {
+            display: none;
+        }
+
+        .media-container {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+
+        video {
+            width: 100%;
+            max-width: 512px;
+            border-radius: 4px;
+            background: #000;
+            display: block;
+            margin: 0 auto;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .instructions {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .instructions li {
+            margin-bottom: 5px;
+        }
+
+        .file-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simli Russian Audio Test</h1>
+        <p class="subtitle">Test Simli avatar lip-sync with Russian audio</p>
+
+        <div class="instructions">
+            <strong>Instructions:</strong>
+            <ul>
+                <li>Enter your Simli API key</li>
+                <li>Select or enter a face ID</li>
+                <li>Upload a Russian audio file (MP3 or WAV)</li>
+                <li>Click "Start Test" to see the avatar lip-sync</li>
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <label for="apiKey">Simli API Key *</label>
+            <input type="text" id="apiKey" placeholder="Enter your API key" required>
+        </div>
+
+        <div class="form-group">
+            <label for="faceId">Face ID *</label>
+            <select id="faceId">
+                <option value="tmp9i8bbq7c">Jenna (High Quality)</option>
+                <option value="cace3ef7-a4c4-425d-a8cf-a5358eb0c427">Tina</option>
+                <option value="b9e5fba3-071a-4e35-896e-211c4d6eaa7b">Laila</option>
+                <option value="d2a5c7c6-fed9-4f55-bcb3-062f7cd20103">Kate</option>
+                <option value="7e74d6e7-d559-4394-bd56-4923a3ab75ad">Sabour</option>
+                <option value="1c6aa65c-d858-4721-a4d9-bda9fde03141">Fred</option>
+                <option value="5fc23ea5-8175-4a82-aaaf-cdd8c88543dc">Madison</option>
+                <option value="804c347a-26c9-4dcf-bb49-13df4bed61e8">Mark</option>
+                <option value="afdb6a3e-3939-40aa-92df-01604c23101c">Zahra</option>
+                <option value="9d0ba12e-ebad-4bfa-b1fb-c6c5be21abca">Teenager</option>
+                <option value="dd10cb5a-d31d-4f12-b69f-6db3383c006e">Hank</option>
+                <option value="c65af549-9105-442a-92a3-dc6c89e34149">DJ</option>
+                <option value="f0ba4efe-7946-45de-9955-c04a04c367b9">Doctor</option>
+                <option value="b1f6ad8f-ed78-430b-85ef-2ec672728104">Charlotte</option>
+                <option value="c295e3a2-ed11-48d5-a1bd-ff42ac7eac73">Einstein</option>
+                <option value="4cce0ca0-550f-42d8-b500-834ffb35e0af">Catgirl</option>
+                <option value="c7451e55-ea04-41c8-ab47-bdca3e4a03d8">Cleopatra</option>
+                <option value="14de6eb1-9404-4149-9ee8-d2bf60f5b2a6">Baby</option>
+                <option value="custom">Custom (enter below)</option>
+            </select>
+            <input type="text" id="customFaceId" placeholder="Enter custom face ID" style="margin-top: 10px; display: none;">
+        </div>
+
+        <div class="form-group">
+            <label for="audioFile">Russian Audio File (MP3/WAV) *</label>
+            <input type="file" id="audioFile" accept="audio/mp3,audio/wav,audio/mpeg" required>
+            <div class="file-info" id="fileInfo"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="syncDelay">Sync Delay (milliseconds):</label>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <input type="range" id="syncDelay" min="0" max="3000" value="1800" step="100" style="flex: 1;">
+                <span id="delayValue" style="font-weight: 600; min-width: 60px;">1800ms</span>
+            </div>
+            <div class="file-info">
+                Adjust to sync audio with lip movements. Start at 1800ms and adjust based on results.
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button id="startBtn">Start Test</button>
+            <button id="stopBtn" disabled>Stop</button>
+        </div>
+
+        <div id="status" class="status hidden"></div>
+
+        <div class="media-container">
+            <video id="videoElement" autoplay playsinline></video>
+            <audio id="audioElement" autoplay></audio>
+        </div>
+    </div>
+
+    <script type="module">
+        import { SimliClient } from 'https://esm.sh/simli-client@1.2.14';
+
+        let simliClient = null;
+        let audioContext = null;
+        let isProcessing = false;
+
+        const apiKeyInput = document.getElementById('apiKey');
+        const faceIdSelect = document.getElementById('faceId');
+        const customFaceIdInput = document.getElementById('customFaceId');
+        const audioFileInput = document.getElementById('audioFile');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const statusDiv = document.getElementById('status');
+        const fileInfoDiv = document.getElementById('fileInfo');
+        const videoElement = document.getElementById('videoElement');
+        const audioElement = document.getElementById('audioElement');
+        const syncDelayInput = document.getElementById('syncDelay');
+        const delayValueSpan = document.getElementById('delayValue');
+
+        syncDelayInput.addEventListener('input', (e) => {
+            delayValueSpan.textContent = `${e.target.value}ms`;
+        });
+
+        faceIdSelect.addEventListener('change', (e) => {
+            customFaceIdInput.style.display = e.target.value === 'custom' ? 'block' : 'none';
+        });
+
+        audioFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const size = (file.size / 1024 / 1024).toFixed(2);
+                fileInfoDiv.textContent = `Selected: ${file.name} (${size} MB)`;
+            } else {
+                fileInfoDiv.textContent = '';
+            }
+        });
+
+        function showStatus(message, type = 'info') {
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+        }
+
+        function hideStatus() {
+            statusDiv.className = 'status hidden';
+        }
+
+        async function convertAudioToPCM16(audioBuffer) {
+            showStatus('Converting audio to PCM16 format (16kHz)...', 'info');
+
+            const offlineContext = new OfflineAudioContext(
+                1,
+                audioBuffer.duration * 16000,
+                16000
+            );
+
+            const source = offlineContext.createBufferSource();
+            source.buffer = audioBuffer;
+            source.connect(offlineContext.destination);
+            source.start(0);
+
+            const resampledBuffer = await offlineContext.startRendering();
+            const channelData = resampledBuffer.getChannelData(0);
+
+            const pcm16 = new Int16Array(channelData.length);
+            for (let i = 0; i < channelData.length; i++) {
+                const sample = Math.max(-1, Math.min(1, channelData[i]));
+                pcm16[i] = sample < 0 ? sample * 0x8000 : sample * 0x7FFF;
+            }
+
+            return new Uint8Array(pcm16.buffer);
+        }
+
+        async function loadAudioFile(file) {
+            showStatus('Loading audio file...', 'info');
+
+            const arrayBuffer = await file.arrayBuffer();
+
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+            showStatus(`Audio loaded: ${audioBuffer.duration.toFixed(2)}s, ${audioBuffer.sampleRate}Hz`, 'success');
+
+            return audioBuffer;
+        }
+
+        async function startTest() {
+            console.log('Start test clicked');
+
+            if (isProcessing) {
+                console.log('Already processing, ignoring click');
+                return;
+            }
+
+            const apiKey = apiKeyInput.value.trim();
+            const faceId = faceIdSelect.value === 'custom'
+                ? customFaceIdInput.value.trim()
+                : faceIdSelect.value;
+            const audioFile = audioFileInput.files[0];
+
+            console.log('Validation:', { hasApiKey: !!apiKey, hasFaceId: !!faceId, hasAudioFile: !!audioFile });
+
+            if (!apiKey) {
+                showStatus('Please enter your API key', 'error');
+                return;
+            }
+
+            if (!faceId) {
+                showStatus('Please enter a face ID', 'error');
+                return;
+            }
+
+            if (!audioFile) {
+                showStatus('Please select an audio file', 'error');
+                return;
+            }
+
+            try {
+                console.log('Starting test with:', { faceId, fileName: audioFile.name });
+                isProcessing = true;
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+
+                showStatus('Initializing Simli client...', 'info');
+
+                simliClient = new SimliClient();
+
+                simliClient.on('connected', () => {
+                    showStatus('Connected to Simli!', 'success');
+                });
+
+                simliClient.on('disconnected', () => {
+                    showStatus('Disconnected from Simli', 'info');
+                });
+
+                simliClient.on('failed', () => {
+                    showStatus('Connection failed', 'error');
+                    stopTest();
+                });
+
+                const config = {
+                    apiKey: apiKey,
+                    faceID: faceId,
+                    handleSilence: true,
+                    maxSessionLength: 600,
+                    maxIdleTime: 300,
+                    videoRef: videoElement,
+                    audioRef: audioElement,
+                    enableConsoleLogs: true
+                };
+
+                simliClient.Initialize(config);
+
+                showStatus('Starting WebRTC connection...', 'info');
+                await simliClient.start();
+
+                const syncDelay = parseInt(syncDelayInput.value);
+                showStatus(`Waiting ${syncDelay}ms for sync...`, 'info');
+                await new Promise(resolve => setTimeout(resolve, syncDelay));
+
+                const audioBuffer = await loadAudioFile(audioFile);
+                const pcm16Data = await convertAudioToPCM16(audioBuffer);
+
+                showStatus('Sending audio to Simli...', 'info');
+
+                const chunkSize = 6000;
+                let offset = 0;
+
+                const sendChunk = () => {
+                    if (offset >= pcm16Data.length) {
+                        showStatus('Audio streaming complete! Watch the avatar.', 'success');
+                        setTimeout(() => {
+                            stopTest();
+                        }, audioBuffer.duration * 1000 + 2000);
+                        return;
+                    }
+
+                    const chunk = pcm16Data.slice(offset, offset + chunkSize);
+                    simliClient.sendAudioData(chunk);
+                    offset += chunkSize;
+
+                    const progress = ((offset / pcm16Data.length) * 100).toFixed(0);
+                    showStatus(`Streaming audio: ${progress}%`, 'info');
+
+                    setTimeout(sendChunk, 100);
+                };
+
+                sendChunk();
+
+            } catch (error) {
+                console.error('Error:', error);
+                showStatus(`Error: ${error.message}`, 'error');
+                stopTest();
+            }
+        }
+
+        function stopTest() {
+            if (simliClient) {
+                try {
+                    simliClient.close();
+                } catch (error) {
+                    console.error('Error closing client:', error);
+                }
+                simliClient = null;
+            }
+
+            isProcessing = false;
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+
+            if (statusDiv.classList.contains('error')) {
+                return;
+            }
+
+            showStatus('Test stopped', 'info');
+        }
+
+        startBtn.addEventListener('click', startTest);
+        stopBtn.addEventListener('click', stopTest);
+    </script>
+</body>
+</html>
