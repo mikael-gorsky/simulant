@@ -1,6 +1,6 @@
-# AI Voice Chatbot
+# Simulant
 
-A real-time AI voice chatbot with avatar visualization, powered by OpenAI's Realtime API and Simli's Avatar API. **Frontend-only architecture** - no backend server required!
+A real-time AI voice agent with avatar visualization, powered by OpenAI's Realtime API and Simli's Avatar API. **Frontend-only architecture** - no backend server required!
 
 ## Features
 
